@@ -1,0 +1,33 @@
+[package]
+name = "nitro-ra"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+serde_bytes = "0.11"
+serde = { version = "1.0", features = ["derive"] }
+serde_cbor = "0.11"
+webpki = "0.21"
+base64 = "0.9.2"
+rustls = { version = "0.19", features = ["dangerous_configuration"] }
+
+nitro-enclave-attestation-document = { git = "https://github.com/prz23/nitro-enclave-attestation-document", optional = true }
+ring = "0.16.20"
+chrono  = "*"
+yasna   = { git = "https://github.com/sgx-test/yasna.rs", features = ["bit-vec", "num-bigint", "chrono"] }
+bit-vec = "*"
+num-bigint = { version = "0.4.2" }
+
+[dependencies.nsm-driver]
+git = "https://github.com/aws/aws-nitro-enclaves-nsm-api.git"
+rev = "4f468c4"
+
+[dependencies.nsm-io]
+git = "https://github.com/aws/aws-nitro-enclaves-nsm-api.git"
+rev = "4f468c4"
+
+[features]
+default = ["openssl"]
+openssl = ["nitro-enclave-attestation-document"]
